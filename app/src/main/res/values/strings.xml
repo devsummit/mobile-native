@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">DevSummit</string>
+    <string name="user_register_button">Register</string>
+    <string name="register_with_email">Register with email</string>
+    <string name="register_with_phone">Register with phone</string>
+    <string name="already_have_account">Already have account?</string>
+    <string name="sign_in">Sign in</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="email">Email</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="verify_password">Verify password</string>
+    <string name="use_referer">Use referer</string>
+    <string name="referer_name">Referer name</string>
 </resources>
