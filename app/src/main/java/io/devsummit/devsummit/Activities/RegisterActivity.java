@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import io.devsummit.devsummit.Activities.FormRegisterActivity;
 import io.devsummit.devsummit.R;
 
 public class RegisterActivity extends AppCompatActivity {

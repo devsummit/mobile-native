@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import io.devsummit.devsummit.R;
-import io.devsummit.devsummit.RegisterActivity;
 
 public class MainActivity extends AppCompatActivity {
 
