@@ -6,6 +6,7 @@ import io.devsummit.devsummit.Models.login.Data;
 import io.devsummit.devsummit.Models.login.Included;
 import io.devsummit.devsummit.Models.login.Links;
 import io.devsummit.devsummit.Models.login.Meta;
+import io.devsummit.devsummit.Models.login.MobileCredentials;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -21,5 +22,9 @@ public interface APIService {
     @POST("auth/login")
     @Headers("Content-Type:application/json")
     Call<LoginModel> login(@Body Credentials credentials);
+
+    @POST("auth/login")
+    @Headers("Content-Type:application/json")
+    Call<LoginModel> loginMobile(@Body MobileCredentials credentials);
 
 }
