@@ -27,6 +27,7 @@ dependencies {
     // Retrofit
     // JSON Parsing
     compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.facebook.android:account-kit-sdk:4.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.google.code.gson:gson:2.6.1'
