@@ -8,8 +8,8 @@ public class ApiUtils {
 
     private ApiUtils() {}
 
-    //public static final String BASE_URL = "http://api.devsummit.io:8081/";
-    public static final String BASE_URL = "http://localhost:5000/";
+    public static final String BASE_URL = "http://api.devsummit.io:8081/";
+    // public static final String BASE_URL = "http://localhost:5000/";
 
     public static APIService getAPIService() {
 
