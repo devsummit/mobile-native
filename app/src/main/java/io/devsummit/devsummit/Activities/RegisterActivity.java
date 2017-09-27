@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import io.devsummit.devsummit.Activities.FormRegisterActivity;
 import io.devsummit.devsummit.R;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -32,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
         startFormRegisterActivity(registerWith);
     }
 
-    public void clickSignIn(View view) {
+    public void onLoginButtonClicked(View view) {
+        startActivity(new Intent(this, LoginActivity.class));
     }
 }
