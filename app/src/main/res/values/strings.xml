@@ -1,18 +1,7 @@
 <resources>
     <string name="app_name">DevSummit</string>
-    <string name="title_activity_login">Sign in</string>
 
-    <!-- Strings related to login -->
-    <string name="prompt_email">Email / Username</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_phone_sign_in">Sign in with phone</string>
-    <string name="action_sign_in">Sign in</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">Email/username is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <!-- Strings related to register -->
     <string name="user_register_button">Register</string>
     <string name="register_with_email">Register with email</string>
     <string name="register_with_phone">Register with phone</string>
@@ -26,7 +15,23 @@
     <string name="verify_password">Verify password</string>
     <string name="use_referer">Use referer</string>
     <string name="referer_name">Referer name</string>
-    <string name="dont_have_account">Do not have account ?</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="fields_not_complete">Fields are not complete</string>
+    <string name="invalid_email">Email is invalid</string>
+    <string name="error_password_not_match">Password does not match</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email / Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_phone_sign_in">Sign in with phone</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">Email/username is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <string name="dont_have_account">Do not have account?</string>
     <string name="register">Register</string>
     <string name="FACEBOOK_APP_ID">1429376450515465</string>
     <string name="ACCOUNT_KIT_CLIENT_TOKEN">de6a4f2b416bca74714745f4372ad6e4</string>

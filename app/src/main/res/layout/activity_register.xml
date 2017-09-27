@@ -7,70 +7,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="io.devsummit.devsummit.Activities.RegisterActivity"
-    android:background="@drawable/background_3x">
+    android:background="@drawable/background_3x"
+    android:gravity="center">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/logo_2x"
-        app:layout_constraintHorizontal_bias="0.503"
         android:id="@+id/logo"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp" />
-
-    <Button
-        android:id="@+id/registerWithEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/colorPrimaryButtonOrange"
-        android:onClick="clickRegisterWithEmail"
-        android:text="@string/register_with_email"
-        android:textColor="#ffffff"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
-
-    <Button
-        android:id="@+id/registerWithPhone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/colorPrimaryButtonYellow"
-        android:onClick="clickRegisterWithPhone"
-        android:text="@string/register_with_phone"
-        android:textColor="#ffffff"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerWithEmail" />
+        android:layout_width="wrap_content"
+        android:layout_height="180dp"
+        android:layout_margin="24dp"
+        android:src="@drawable/logo_2x" />
 
     <LinearLayout
+        android:id="@+id/register_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/registerWithEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimaryButtonOrange"
+            android:onClick="clickRegisterWithEmail"
+            android:text="@string/register_with_email"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/registerWithPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimaryButtonYellow"
+            android:onClick="clickRegisterWithPhone"
+            android:text="@string/register_with_phone"
+            android:textColor="#ffffff"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/registerWithEmail" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/alreadyHaveAccount"
             android:layout_width="wrap_content"
-            android:layout_height="22dp"
+            android:layout_height="wrap_content"
             android:text="@string/already_have_account"
-            app:layout_constraintRight_toLeftOf="@+id/signInButton"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/registerWithPhone"
-            android:layout_marginRight="0dp"
-            android:layout_marginLeft="32dp"
-            android:textColor="#FFFFFF"
-            android:textAllCaps="true" />
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF" />
 
         <Button
-            android:id="@+id/signInButton"
+            android:id="@+id/button_sign_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sign_in"
-            app:layout_constraintBaseline_toBaselineOf="@+id/alreadyHaveAccount"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toRightOf="@+id/alreadyHaveAccount"
-            android:layout_marginRight="32dp"
+            android:background="@android:color/transparent"
             android:backgroundTint="@color/colorTransparent"
-            android:textColor="@color/colorPrimaryButtonYellow"
-            android:background="@android:color/transparent" />
+            android:text="@string/sign_in"
+            android:onClick="onLoginButtonClicked"
+            android:textColor="@color/colorPrimaryButtonYellow" />
 
     </LinearLayout>
 

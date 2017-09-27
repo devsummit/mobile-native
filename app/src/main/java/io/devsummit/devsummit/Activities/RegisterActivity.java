@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import io.devsummit.devsummit.Activities.FormRegisterActivity;
 import io.devsummit.devsummit.R;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -16,18 +15,23 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
     }
 
+    private void startFormRegisterActivity(String registerWith) {
+        Intent intent = new Intent(this, FormRegisterActivity.class);
+        intent.putExtra("registerWith", registerWith);
+        startActivity(intent);
+    }
+
     public void clickRegisterWithEmail(View view) {
-        Intent emailIntent = new Intent(this, FormRegisterActivity.class);
-        emailIntent.putExtra("registerWith", "email");
-        startActivity(emailIntent);
+        String registerWith = "email";
+        startFormRegisterActivity(registerWith);
     }
 
     public void clickRegisterWithPhone(View view) {
-        Intent phoneIntent = new Intent(this, FormRegisterActivity.class);
-        phoneIntent.putExtra("registerWith", "phone");
-        startActivity(phoneIntent);
+        String registerWith = "phone";
+        startFormRegisterActivity(registerWith);
     }
 
-    public void clickSignIn(View view) {
+    public void onLoginButtonClicked(View view) {
+        startActivity(new Intent(this, LoginActivity.class));
     }
 }
