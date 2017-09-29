@@ -7,6 +7,7 @@ package io.devsummit.devsummit.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 import io.devsummit.devsummit.Models.basemodel.Included;
@@ -14,7 +15,7 @@ import io.devsummit.devsummit.Models.basemodel.Links;
 import io.devsummit.devsummit.Models.basemodel.Meta;
 import io.devsummit.devsummit.Models.userticket.Datum;
 
-public class UserTicketModel {
+public class UserTicketModel implements Serializable {
 
     @SerializedName("data")
     @Expose
