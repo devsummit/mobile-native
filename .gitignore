@@ -61,3 +61,4 @@ fabric.properties
 
 # *.iml
 # modules.xml
+app/src/main/java/io/devsummit/devsummit/Remote/ApiUtils.java
