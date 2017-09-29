@@ -37,6 +37,7 @@ public interface APIService {
     @POST("auth/register")
     @Headers("Content-Type:application/json")
     Call<RegisterModel> register(@Body RegisterCredentials credentials);
+
     @GET("api/v1/notifications?page=1")
     Call<NotificationModel> initialFetchNotification(@Header("Authorization") String token);
 
@@ -44,11 +45,11 @@ public interface APIService {
     @Headers("Content-Type: application/json")
     Call<NotificationModel> fetchNotification(@Header("Authorization") String token, @Url String url);
 
-    @POST
+    @POST("auth/refreshtoken")
     @Headers("Content-Type:application/json")
     Call<RefreshTokenModel> refreshToken(@Body String refresh_token);
 
-    @GET
+    @GET("api/v1/user/tickets")
     Call<UserTicketModel> fetchUserTicket(@Header("Authorization") String token);
 
 }
