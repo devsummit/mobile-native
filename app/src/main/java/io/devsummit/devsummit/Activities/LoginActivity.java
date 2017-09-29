@@ -3,25 +3,22 @@ package io.devsummit.devsummit.Activities;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
+import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.Loader;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
-
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-
-import android.os.Build;
-import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -41,6 +38,7 @@ import com.facebook.accountkit.ui.LoginType;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.devsummit.devsummit.Helpers.User_Authentication_Helper;
 import io.devsummit.devsummit.Models.LoginModel;
 import io.devsummit.devsummit.Models.login.Credentials;
 import io.devsummit.devsummit.Models.login.MobileCredentials;
@@ -61,6 +59,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     public static final String PREFS_NAME = "UserProfile";
     private TextView mResponseTv;
     private APIService mAPIService;
+    private User_Authentication_Helper authHelper;
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -81,12 +80,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
-    private View mLoginFormView;
     private Button mLoginButton;
     private Button mLoginPhoneButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        authHelper = new User_Authentication_Helper(this);
         AccountKit.initialize(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -128,7 +127,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 clickRegister();
             }
         });
-        mLoginFormView = findViewById(R.id.email_login_form);
         mProgressView = findViewById(R.id.login_progress);
     }
 
@@ -238,9 +236,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
                 checkResponse(response.body());
             }
-
             @Override
             public void onFailure(Call<LoginModel> call, Throwable t) {
+                Context context = getApplicationContext();
+                CharSequence text = "Login failure";
+                int duration = Toast.LENGTH_LONG;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
                 showProgress(false);
             }
         });
@@ -250,11 +252,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         final String[] toastMessage = {""};
         if(body.getMeta().getSuccess().booleanValue()) {
             String accessToken = body.getData().getAccessToken().toString();
-            SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-            SharedPreferences.Editor editor = settings.edit();
-            editor.putString("AccessToken", accessToken);
-            finish();
+            String refreshToken = body.getData().getRefreshToken();
+            authHelper.saveAccessToken(accessToken, refreshToken);
             toastMessage[0] = "Welcome! " + body.getIncluded().getFirstName();
+            startActivity(new Intent(this, MainActivity.class));
         } else if(body.getMeta().getMessage().equals("username not found") || body.getMeta().getMessage().equals("user is not registered")) {
             toastMessage[0] = "username not found";
             AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
@@ -322,6 +323,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     mLoginButton.setVisibility(show ? View.GONE : View.VISIBLE);
                 }
             });
+
 
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
             mProgressView.animate().setDuration(shortAnimTime).alpha(
