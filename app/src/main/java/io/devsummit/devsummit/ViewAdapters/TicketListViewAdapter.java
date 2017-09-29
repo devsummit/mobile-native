@@ -22,7 +22,7 @@ public class TicketListViewAdapter extends RecyclerView.Adapter<TicketListViewAd
     public TicketListViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         // TODO: inflate your view and create viewholder, most likely looks like this though
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(
-                R.layout.notification_detail,
+                R.layout.user_ticket_row,
                 viewGroup,
                 false);
 
@@ -38,8 +38,7 @@ public class TicketListViewAdapter extends RecyclerView.Adapter<TicketListViewAd
     @Override
     public void onBindViewHolder(TicketListViewHolder viewHolder, int i) {
         // TODO: all your bind operations
-        viewHolder.messageTextView.setText(mDataset.get(i).getTicketCode().toString());
-        viewHolder.titleTextView.setText(mDataset.get(i).getTicketId().toString());
+        viewHolder.ticketCodeView.setText(mDataset.get(i).getTicketCode().toString());
     }
 
     @Override
@@ -50,15 +49,10 @@ public class TicketListViewAdapter extends RecyclerView.Adapter<TicketListViewAd
 
     public static class TicketListViewHolder extends RecyclerView.ViewHolder {
         // TODO: whatever views you need to bind
-        public TextView messageTextView;
-        public TextView titleTextView;
-        public TextView createdTextView;
-        public TextView senderTextView;
-
+        public TextView ticketCodeView;
         public TicketListViewHolder(View v) {
             super(v); // done this way instead of view tagging
-            messageTextView = (TextView) v.findViewById(R.id.message_text);
-            titleTextView = (TextView) v.findViewById(R.id.title_text);
+            ticketCodeView = (TextView) v.findViewById(R.id.ticket_code_text);
         }
     }
 }

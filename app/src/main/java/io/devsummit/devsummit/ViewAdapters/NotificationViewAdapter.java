@@ -4,7 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public class NotificationViewAdapter extends RecyclerView.Adapter<NotificationVi
     public NotificationViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         // TODO: inflate your view and create viewholder, most likely looks like this though
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(
-                R.layout.notification_detail,
+                R.layout.notification_row,
                 viewGroup,
                 false);
 
