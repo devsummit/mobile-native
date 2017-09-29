@@ -24,12 +24,12 @@ import static io.devsummit.devsummit.Constants.USER_AUTH;
  * Created by ganesh on 25/09/17.
  */
 
-public class User_Authentication_Helper {
+public class UserAuthenticationHelper {
     private final Context context;
     private final SharedPreferences sharedPrefs;
     private APIService mAPIService;
 
-    public  User_Authentication_Helper(Context context){
+    public UserAuthenticationHelper(Context context){
         this.context = context;
         sharedPrefs = context.getSharedPreferences(USER_AUTH, 0);
     }

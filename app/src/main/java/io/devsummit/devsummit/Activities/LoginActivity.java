@@ -38,7 +38,7 @@ import com.facebook.accountkit.ui.LoginType;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.devsummit.devsummit.Helpers.User_Authentication_Helper;
+import io.devsummit.devsummit.Helpers.UserAuthenticationHelper;
 import io.devsummit.devsummit.Models.LoginModel;
 import io.devsummit.devsummit.Models.login.Credentials;
 import io.devsummit.devsummit.Models.login.MobileCredentials;
@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     public static final String PREFS_NAME = "UserProfile";
     private TextView mResponseTv;
     private APIService mAPIService;
-    private User_Authentication_Helper authHelper;
+    private UserAuthenticationHelper authHelper;
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        authHelper = new User_Authentication_Helper(this);
+        authHelper = new UserAuthenticationHelper(this);
         AccountKit.initialize(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);

@@ -12,16 +12,15 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import io.devsummit.devsummit.Controllers.UserTicketController;
 import io.devsummit.devsummit.Fragments.FeedFragment;
-import io.devsummit.devsummit.Helpers.User_Authentication_Helper;
+import io.devsummit.devsummit.Helpers.UserAuthenticationHelper;
 import io.devsummit.devsummit.R;
 
 public class MainActivity extends AppCompatActivity {
-    private User_Authentication_Helper authHelper;
+    private UserAuthenticationHelper authHelper;
     private UserTicketController userTicketController;
     private ProgressBar mProgressView;
 
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        authHelper = new User_Authentication_Helper(this);
+        authHelper = new UserAuthenticationHelper(this);
         mProgressView = (ProgressBar) findViewById(R.id.main_activity_loader);
 
         super.onCreate(savedInstanceState);

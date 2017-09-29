@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import io.devsummit.devsummit.Controllers.UserTicketController;
-import io.devsummit.devsummit.Helpers.User_Authentication_Helper;
+import io.devsummit.devsummit.Helpers.UserAuthenticationHelper;
 import io.devsummit.devsummit.Models.UserTicketModel;
 import io.devsummit.devsummit.R;
 import io.devsummit.devsummit.ViewAdapters.TicketListViewAdapter;
@@ -25,7 +25,7 @@ public class TicketFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private View mContent;
     private UserTicketController userTicketController;
-    private User_Authentication_Helper authHelper;
+    private UserAuthenticationHelper authHelper;
     private static final String USER_TICKETS = "user_ticket_model";
     private  UserTicketModel mUserTicketModel;
 
@@ -50,7 +50,7 @@ public class TicketFragment extends Fragment {
         View layout= inflater.inflate(R.layout.ticket_fragment, container, false);
 
         // Inflate the layout for this fragment
-        authHelper = new User_Authentication_Helper(getActivity());
+        authHelper = new UserAuthenticationHelper(getActivity());
 
 
         mRecyclerView = (RecyclerView) layout.findViewById(R.id.user_ticket_recycler_view);
