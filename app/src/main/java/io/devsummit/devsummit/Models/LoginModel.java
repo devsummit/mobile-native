@@ -8,8 +8,8 @@ import com.google.gson.annotations.SerializedName;
 
 import io.devsummit.devsummit.Models.login.Data;
 import io.devsummit.devsummit.Models.login.Included;
-import io.devsummit.devsummit.Models.login.Links;
-import io.devsummit.devsummit.Models.login.Meta;
+import io.devsummit.devsummit.Models.basemodel.Links;
+import io.devsummit.devsummit.Models.basemodel.Meta;
 
 public class LoginModel{
 
