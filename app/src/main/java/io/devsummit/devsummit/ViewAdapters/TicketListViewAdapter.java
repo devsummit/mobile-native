@@ -1,4 +1,4 @@
-package io.devsummit.devsummit.ScreenAdapters;
+package io.devsummit.devsummit.ViewAdapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
