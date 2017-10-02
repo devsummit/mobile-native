@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="io.devsummit.devsummit.io.devsummit.native_android.Activities.MainActivity">
+    tools:context="io.devsummit.android.Activities.MainActivity">
 
     <ProgressBar
         android:id="@+id/main_activity_loader"
