@@ -53,6 +53,7 @@
             android:textColor="#FFFFFF"
             android:textCursorDrawable="@null" />
         <FrameLayout
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ProgressBar
@@ -71,7 +72,6 @@
                 android:id="@+id/email_sign_in_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:backgroundTint="@color/colorPrimaryButtonOrange"
                 android:text="@string/action_sign_in_short"
                 android:textColor="#ffffff"
