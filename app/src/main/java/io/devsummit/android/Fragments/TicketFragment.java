@@ -53,11 +53,19 @@ public class TicketFragment extends Fragment {
         authHelper = new UserAuthenticationHelper(getActivity());
 
 
+
         mRecyclerView = (RecyclerView) layout.findViewById(R.id.user_ticket_recycler_view);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         // mRecyclerView.setHasFixedSize(true);
+
+        return layout;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getContext());
@@ -69,7 +77,6 @@ public class TicketFragment extends Fragment {
         mAdapter = new TicketListViewAdapter(mUserTicketModel.getData());
         mRecyclerView.setAdapter(mAdapter);
 
-        return layout;
     }
 
     @Override

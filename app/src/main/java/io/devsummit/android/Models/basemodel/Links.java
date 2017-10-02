@@ -1,6 +1,8 @@
 package io.devsummit.android.Models.basemodel;
 
-public class Links {
+import java.io.Serializable;
+
+public class Links implements Serializable {
 
 
 }
