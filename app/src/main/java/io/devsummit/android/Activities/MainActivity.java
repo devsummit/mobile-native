@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Shows the progress UI and hides the login form.
+     * Shows the progress UI and hides the fetch ticket.
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     public void showProgress(final boolean show) {

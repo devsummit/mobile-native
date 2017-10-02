@@ -26,13 +26,18 @@
             android:value="@string/ACCOUNT_KIT_CLIENT_TOKEN" />
 
         <activity
+            android:screenOrientation="portrait"
             android:name="com.facebook.accountkit.ui.AccountKitActivity"
             android:theme="@style/AppLoginTheme"
             tools:replace="android:theme" />
 
-        <activity android:name="io.devsummit.android.Activities.MainActivity"></activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:name="io.devsummit.android.Activities.MainActivity"
+            ></activity>
 
         <activity
+            android:screenOrientation="portrait"
             android:name="io.devsummit.android.Activities.RegisterActivity"
             android:parentActivityName="io.devsummit.android.Activities.MainActivity">
             <meta-data
@@ -40,9 +45,12 @@
                 android:value="io.devsummit.android.Activities.MainActivity" />
         </activity>
 
-        <activity android:name="io.devsummit.android.Activities.FormRegisterActivity"></activity>
+        <activity
+            android:name="io.devsummit.android.Activities.FormRegisterActivity"
+            android:screenOrientation="portrait"></activity>
 
         <activity
+            android:screenOrientation="portrait"
             android:name="io.devsummit.android.Activities.LoginActivity"
             android:label="@string/app_name">
             <intent-filter>

@@ -46,14 +46,10 @@ public class TicketFragment extends Fragment {
         mUserTicketModel = (UserTicketModel) getArguments().getSerializable(
                 USER_TICKETS);
 
-
         View layout = inflater.inflate(R.layout.ticket_fragment, container, false);
 
         // Inflate the layout for this fragment
         authHelper = new UserAuthenticationHelper(getActivity());
-
-
-
         mRecyclerView = (RecyclerView) layout.findViewById(R.id.user_ticket_recycler_view);
 
         // use this setting to improve performance if you know that changes
@@ -71,12 +67,9 @@ public class TicketFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        // get ticket data
-
         // specify an adapter (see also next example)
         mAdapter = new TicketListViewAdapter(mUserTicketModel.getData());
         mRecyclerView.setAdapter(mAdapter);
-
     }
 
     @Override

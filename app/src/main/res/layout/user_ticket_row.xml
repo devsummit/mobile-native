@@ -19,14 +19,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:text="TICKET NO : "/>
         <TextView
             android:id="@+id/ticket_code_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textStyle="bold"
+            android:textAlignment="textStart"
             android:textColor="@color/colorAccent"
             android:gravity="end"/>
         </LinearLayout>
