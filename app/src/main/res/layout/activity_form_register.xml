@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_3x"
-    tools:context="io.devsummit.devsummit.Activities.FormRegisterActivity">
+    tools:context="io.devsummit.devsummit.io.devsummit.native_android.Activities.FormRegisterActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"

@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="io.devsummit.devsummit.Activities.RegisterActivity"
+    tools:context="io.devsummit.devsummit.io.devsummit.native_android.Activities.RegisterActivity"
     android:background="@drawable/background_3x"
     android:gravity="center">
 
