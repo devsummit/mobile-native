@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
 import io.devsummit.android.Controllers.UserTicketController;
@@ -25,11 +26,19 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar mProgressView;
     private BottomNavigationView navigation;
 
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
+
+    private FrameLayout mContainer;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            mContainer.removeAllViews();
             Fragment frag = null;
             String token = authHelper.getAccessToken();
             switch (item.getItemId()) {
@@ -59,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         mProgressView = (ProgressBar) findViewById(R.id.main_activity_loader);
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         userTicketController = new UserTicketController(MainActivity.this);
+        mContainer = (FrameLayout) findViewById(R.id.container);
     }
 
     @Override
@@ -69,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Shows the progress UI and hides the login form.
+     * Shows the progress UI and hides the fetch ticket.
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     public void showProgress(final boolean show) {

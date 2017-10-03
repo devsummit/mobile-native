@@ -36,6 +36,7 @@ import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
 
+import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -316,15 +317,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-            mLoginButton.setVisibility(show ? View.GONE : View.VISIBLE);
-            mLoginPhoneButton.setVisibility(show ? View.GONE : View.VISIBLE);
-            mLoginButton.animate().setDuration(shortAnimTime).alpha(
-                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mLoginButton.setVisibility(show ? View.GONE : View.VISIBLE);
-                }
-            });
+            mLoginButton.setVisibility(show ? View.INVISIBLE : View.VISIBLE);
+            mLoginPhoneButton.setVisibility(show ? View.INVISIBLE : View.VISIBLE);
 
 
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
@@ -338,8 +332,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         } else {
             // The ViewPropertyAnimator APIs are not available, so simply show
             // and hide the relevant UI components.
-            mLoginPhoneButton.setVisibility(show ? View.GONE : View.VISIBLE);
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+            mLoginPhoneButton.setVisibility(show ? View.INVISIBLE : View.VISIBLE);
+            mProgressView.setVisibility(show ? View.INVISIBLE : View.GONE);
             mLoginButton.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }

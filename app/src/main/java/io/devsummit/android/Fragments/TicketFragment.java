@@ -74,7 +74,26 @@ public class TicketFragment extends Fragment implements View.OnClickListener {
         myOrders = (ImageButton) layout.findViewById(R.id.button_my_order);
         myOrders.setOnClickListener(this);
 
+        mRecyclerView = (RecyclerView) layout.findViewById(R.id.user_ticket_recycler_view);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        // mRecyclerView.setHasFixedSize(true);
+
         return layout;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        // specify an adapter (see also next example)
+        mAdapter = new TicketListViewAdapter(mUserTicketModel.getData());
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override

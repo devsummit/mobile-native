@@ -30,7 +30,7 @@ public class UserTicketController {
         mAPIService = ApiUtils.getAPIService();
     }
 
-    public UserTicketModel getUserTickets(String token, final Context context) {
+    public void getUserTickets(String token, final Context context) {
         mMainActivity.showProgress(true);
         mAPIService.fetchUserTicket(token).enqueue(new Callback<UserTicketModel>() {
             @Override
@@ -50,7 +50,6 @@ public class UserTicketController {
                 mMainActivity.showProgress(false);
             }
         });
-        return UserTickets;
     }
 
 }
