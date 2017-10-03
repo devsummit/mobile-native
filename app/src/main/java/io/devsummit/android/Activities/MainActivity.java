@@ -25,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
     private UserTicketController userTicketController;
     private ProgressBar mProgressView;
     private BottomNavigationView navigation;
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
+
     private FrameLayout mContainer;
 
 

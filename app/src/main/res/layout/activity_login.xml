@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="io.devsummit.android.Activities.RegisterActivity"
+    tools:context="io.devsummit.android.Activities.LoginActivity"
     android:background="@drawable/background_3x"
     android:gravity="center">
 
@@ -38,20 +38,29 @@
             android:paddingRight="20dp"
             android:textColor="#FFFFFF"
             android:textCursorDrawable="@null" />
-
-        <EditText
-            android:id="@+id/password"
+        <android.support.design.widget.TextInputLayout
+            android:layout_marginTop="8dp"
+            android:id="@+id/etPasswordLayout"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/rounded_border_edittext"
-            android:ems="10"
-            android:hint="@string/prompt_password"
-            android:inputType="textPassword"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:textColor="#FFFFFF"
-            android:textCursorDrawable="@null" />
+            android:layout_height="wrap_content"
+            app:passwordToggleTint="@color/colorAccent"
+            app:passwordToggleEnabled="true"
+            app:hintEnabled="false">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_border_edittext"
+                android:ems="10"
+                android:hint="@string/prompt_password"
+                android:inputType="textPassword"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="#FFFFFF"
+                android:textCursorDrawable="@null"
+                />
+        </android.support.design.widget.TextInputLayout>
         <FrameLayout
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
@@ -68,25 +77,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/email_sign_in_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorPrimaryButtonOrange"
-                android:text="@string/action_sign_in_short"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/logo" />
-            <Button
-                android:id="@+id/phone_sign_in_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:backgroundTint="@color/colorPrimaryButtonYellow"
-                android:text="@string/action_phone_sign_in"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/logo" />
+                <Button
+                    android:id="@+id/email_sign_in_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorPrimaryButtonOrange"
+                    android:text="@string/action_sign_in_short"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/logo" />
+                <Button
+                    android:id="@+id/phone_sign_in_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:backgroundTint="@color/colorPrimaryButtonYellow"
+                    android:text="@string/action_phone_sign_in"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/logo" />
             </LinearLayout>
         </FrameLayout>
 
