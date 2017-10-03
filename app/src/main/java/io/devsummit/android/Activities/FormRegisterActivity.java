@@ -187,7 +187,9 @@ public class FormRegisterActivity extends AppCompatActivity {
     }
 
     public void onLoginClicked(View view) {
-        startActivity(new Intent(this, LoginActivity.class));
+        Intent i = new Intent(this, LoginActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
     }
 
     public void onRegisterClicked(View view) {
@@ -408,4 +410,6 @@ public class FormRegisterActivity extends AppCompatActivity {
 
         return credentials;
     }
+
+
 }
