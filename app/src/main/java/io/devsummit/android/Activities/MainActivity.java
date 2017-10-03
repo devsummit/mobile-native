@@ -15,10 +15,12 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
+
+import io.devsummit.android.Helpers.ExitAppHelper;
+import io.devsummit.android.R;
 import io.devsummit.android.Controllers.UserTicketController;
 import io.devsummit.android.Fragments.FeedFragment;
 import io.devsummit.android.Helpers.UserAuthenticationHelper;
-import io.devsummit.android.R;
 
 public class MainActivity extends AppCompatActivity {
     private UserAuthenticationHelper authHelper;
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        moveTaskToBack(true);
+        ExitAppHelper.exitTheApp(this);
     }
 
     private FrameLayout mContainer;

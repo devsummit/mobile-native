@@ -36,10 +36,10 @@ import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
 
-import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.devsummit.android.Helpers.ExitAppHelper;
 import io.devsummit.android.Helpers.UserAuthenticationHelper;
 import io.devsummit.android.Models.LoginModel;
 import io.devsummit.android.Models.login.Credentials;
@@ -136,6 +136,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private void clickRegister() {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        ExitAppHelper.exitTheApp(this);
     }
 
     private void populateAutoComplete() {

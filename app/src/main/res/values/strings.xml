@@ -46,4 +46,9 @@
     <string name="title_tickets">Tickets</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="title_app_exit">Exit</string>
+    <string name="message_app_exit">Are you sure want to exit?</string>
+    <string name="exit_button_text">Yes, I\'m sure</string>
+    <string name="undo_exit_button_text">No</string>
 </resources>
