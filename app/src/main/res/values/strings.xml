@@ -35,4 +35,12 @@
     <string name="register">Register</string>
     <string name="FACEBOOK_APP_ID">1429376450515465</string>
     <string name="ACCOUNT_KIT_CLIENT_TOKEN">de6a4f2b416bca74714745f4372ad6e4</string>
+
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_schedule">Schedule</string>
+    <string name="title_setting">Setting</string>
+    <string name="title_tickets">Tickets</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
