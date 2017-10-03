@@ -14,7 +14,7 @@ public class OrderStatusHelper {
             if (payment.getFraudStatus().equals("accept") && payment.getTransactionStatus().equals("capture")) {
                 message = "Paid";
             } else if (payment.getFraudStatus().equals("challenge")) {
-                message = "Waiting for authori  zation";
+                message = "Waiting for authorization";
             } else if (payment.getTransactionStatus().equals("pending")) {
                 message = "Pending";
             } else {

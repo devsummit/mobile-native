@@ -36,7 +36,5 @@ public class OrderedTicketController {
                 OrderedTickets = new OrderedTicketModel();
             }
         });
-
-        //return OrderedTickets;
     }
 }

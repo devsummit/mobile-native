@@ -27,7 +27,7 @@ public class OrderedTicketActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ordered_ticket);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.myToolbar);
         setSupportActionBar(myToolbar);
 
         if (getSupportActionBar() != null) {
@@ -56,13 +56,14 @@ public class OrderedTicketActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    //@Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
                 onBackPressed();
                 return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 }

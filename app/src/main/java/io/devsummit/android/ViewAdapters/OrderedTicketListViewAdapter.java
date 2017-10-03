@@ -61,6 +61,7 @@ public class OrderedTicketListViewAdapter extends RecyclerView.Adapter<OrderedTi
                 false);
 
         OrderedTicketListViewHolder vh = new OrderedTicketListViewHolder(v);
+
         return vh;
     }
 
