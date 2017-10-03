@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class Meta implements Serializable{
+public class Meta implements Serializable {
 
     @SerializedName("message")
     @Expose

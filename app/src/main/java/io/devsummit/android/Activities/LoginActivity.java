@@ -40,13 +40,14 @@ import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.devsummit.android.R;
 import io.devsummit.android.Helpers.UserAuthenticationHelper;
 import io.devsummit.android.Models.LoginModel;
 import io.devsummit.android.Models.login.Credentials;
 import io.devsummit.android.Models.login.MobileCredentials;
+import io.devsummit.android.R;
 import io.devsummit.android.Remote.APIService;
 import io.devsummit.android.Remote.ApiUtils;
+import io.fabric.sdk.android.Fabric;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

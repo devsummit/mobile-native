@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="io.devsummit.android">
 
-
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -18,11 +17,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data android:name="com.facebook.accountkit.ApplicationName"
+        <meta-data
+            android:name="com.facebook.accountkit.ApplicationName"
             android:value="@string/app_name" />
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/FACEBOOK_APP_ID" />
-        <meta-data android:name="com.facebook.accountkit.ClientToken"
+        <meta-data
+            android:name="com.facebook.accountkit.ClientToken"
             android:value="@string/ACCOUNT_KIT_CLIENT_TOKEN" />
 
         <activity
@@ -47,7 +49,8 @@
 
         <activity
             android:name="io.devsummit.android.Activities.FormRegisterActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+        </activity>
 
         <activity
             android:screenOrientation="portrait"
@@ -55,12 +58,16 @@
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".Activities.OrderedTicketActivity"></activity>
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="4f48186ef15a18ac870037012a8050a04911ddbf" />
+            android:value="e73607d6e2e284cbc11168bfd019ce6a301e257f" />
+
     </application>
 
 </manifest>

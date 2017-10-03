@@ -36,6 +36,9 @@
     <string name="FACEBOOK_APP_ID">1429376450515465</string>
     <string name="ACCOUNT_KIT_CLIENT_TOKEN">de6a4f2b416bca74714745f4372ad6e4</string>
 
+    <!-- Strings related to ticket order -->
+    <string name="list_order">Order List</string>
+
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_schedule">Schedule</string>

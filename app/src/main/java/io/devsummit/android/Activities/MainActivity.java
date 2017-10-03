@@ -15,10 +15,10 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
-import io.devsummit.android.R;
 import io.devsummit.android.Controllers.UserTicketController;
 import io.devsummit.android.Fragments.FeedFragment;
 import io.devsummit.android.Helpers.UserAuthenticationHelper;
+import io.devsummit.android.R;
 
 public class MainActivity extends AppCompatActivity {
     private UserAuthenticationHelper authHelper;
@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private FrameLayout mContainer;
-
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
