@@ -32,7 +32,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void onLoginButtonClicked(View view) {
-//        startActivity(new Intent(this, LoginActivity.class));
         finish();
     }
 }
