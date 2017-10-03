@@ -1,6 +1,8 @@
 package io.devsummit.android.Models.basemodel;
 
-public class Included {
+import java.io.Serializable;
+
+public class Included implements Serializable {
 
 
 }

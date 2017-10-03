@@ -2,6 +2,7 @@ package io.devsummit.android.Remote;
 
 import io.devsummit.android.Models.LoginModel;
 import io.devsummit.android.Models.NotificationModel;
+import io.devsummit.android.Models.OrderedTicketModel;
 import io.devsummit.android.Models.RegisterModel;
 import io.devsummit.android.Models.UserTicketModel;
 import io.devsummit.android.Models.authmodel.RefreshTokenModel;
@@ -40,6 +41,9 @@ public interface APIService {
 
     @GET("api/v1/notifications?page=1")
     Call<NotificationModel> initialFetchNotification(@Header("Authorization") String token);
+
+    @GET("api/v1/orders")
+    Call<OrderedTicketModel> fetchOrderedTickets(@Header("Authorization") String token);
 
     @GET
     @Headers("Content-Type: application/json")
