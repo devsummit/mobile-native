@@ -20,6 +20,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,6 +37,9 @@ import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
 
+import io.devsummit.android.Models.login.Photo;
+import io.devsummit.android.Models.login.ProfileData;
+import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +51,8 @@ import io.devsummit.android.Models.login.MobileCredentials;
 import io.devsummit.android.R;
 import io.devsummit.android.Remote.APIService;
 import io.devsummit.android.Remote.ApiUtils;
-import io.fabric.sdk.android.Fabric;
+import io.realm.Realm;
+import io.realm.RealmList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -94,11 +99,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mEmailView = (EditText) findViewById(R.id.email);
-        populateAutoComplete();
         mLoginButton = (Button) findViewById(R.id.email_sign_in_button);
         mLoginPhoneButton = (Button) findViewById(R.id.phone_sign_in_button);
         mAPIService = ApiUtils.getAPIService();
         mPasswordView = (EditText) findViewById(R.id.password);
+        mProgressView = findViewById(R.id.login_progress);
+        populateAutoComplete();
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Realm.init(this);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -109,7 +122,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 return false;
             }
         });
-
         mLoginButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,7 +142,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 clickRegister();
             }
         });
-        mProgressView = findViewById(R.id.login_progress);
+
+        authHelper.CheckTokenExpired(this);
     }
 
     private void clickRegister() {
@@ -243,6 +256,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
                 checkResponse(response.body());
+
             }
 
             @Override
@@ -263,7 +277,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             String accessToken = body.getData().getAccessToken().toString();
             String refreshToken = body.getData().getRefreshToken();
             authHelper.saveAccessToken(accessToken, refreshToken);
-            toastMessage[0] = "Welcome! " + body.getIncluded().getFirstName();
+            if(body.getProfileData() != null) {
+                this.saveProfileData(body.getProfileData());
+            }
+            toastMessage[0] = "Welcome! " + body.getProfileData().getFirstName();
             startActivity(new Intent(this, MainActivity.class));
         } else if (body.getMeta().getMessage().equals("username not found") || body.getMeta().getMessage().equals("user is not registered")) {
             toastMessage[0] = "username not found";
@@ -299,6 +316,51 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
         showProgress(false);
+    }
+
+    private void saveProfileData(ProfileData pd){
+
+
+        // Get a Realm instance for this thread
+        Realm realm = Realm.getDefaultInstance();
+
+        try {
+            // Persist your data in a transaction
+            realm.beginTransaction();
+            ProfileData checkProfile =  realm.where(ProfileData.class).findFirst();
+            ProfileData newProfileData = checkProfile != null ? checkProfile : realm.createObject(ProfileData.class, pd.getId());
+
+            if (checkProfile == null) {
+                newProfileData.setCreatedAt(pd.getCreatedAt());
+                newProfileData.setEmail(pd.getEmail());
+                newProfileData.setFcmtoken(pd.getFcmtoken());
+                newProfileData.setUsername(pd.getUsername());
+                newProfileData.setFirstName(pd.getFirstName());
+                newProfileData.setLastName(pd.getLastName());
+                newProfileData.setReferer(pd.getReferer());
+                newProfileData.setRoleId(pd.getRoleId());
+                newProfileData.setSocialId(pd.getSocialId());
+                newProfileData.setUpdatedAt(pd.getUpdatedAt());
+                RealmList<Photo> list = pd.getPhotos();
+                if (!list.isManaged()) { // if the 'list' is managed, all items in it is also managed
+                    RealmList<Photo> managedImageList = new RealmList<>();
+                    for (Photo item : list) {
+                        if (item.isManaged()) {
+                            managedImageList.add(item);
+                        } else {
+                            managedImageList.add(realm.copyToRealm(item));
+                        }
+                    }
+                    list = managedImageList;
+                }
+                newProfileData.setPhotos(list);
+                realm.commitTransaction();
+            }
+
+        } catch (Exception exc){
+            realm.cancelTransaction();
+        }
+
     }
 
     private boolean isEmailValid(String email) {
@@ -413,7 +475,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
                             checkResponse(response.body());
                         }
-
                         @Override
                         public void onFailure(Call<LoginModel> call, Throwable t) {
                             showProgress(false);
