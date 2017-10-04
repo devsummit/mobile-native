@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
 import io.devsummit.android.Models.basemodel.Links;
 import io.devsummit.android.Models.basemodel.Meta;
 import io.devsummit.android.Models.login.Data;
-import io.devsummit.android.Models.login.Included;
+import io.devsummit.android.Models.login.ProfileData;
 
 public class LoginModel {
 
@@ -18,7 +18,7 @@ public class LoginModel {
     private Data data;
     @SerializedName("included")
     @Expose
-    private Included included;
+    private ProfileData profileData;
     @SerializedName("links")
     @Expose
     private Links links;
@@ -34,12 +34,12 @@ public class LoginModel {
         this.data = data;
     }
 
-    public Included getIncluded() {
-        return included;
+    public ProfileData getProfileData() {
+        return profileData;
     }
 
-    public void setIncluded(Included included) {
-        this.included = included;
+    public void setProfileData(ProfileData profileData) {
+        this.profileData = profileData;
     }
 
     public Links getLinks() {
