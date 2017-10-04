@@ -88,15 +88,7 @@ public class UserProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 authHelper.removeAccessToken();
-                realm.beginTransaction();
-                try{
-                    RealmResults<ProfileData> row = realm.where(ProfileData.class).findAll();
-                    row.deleteAllFromRealm();
-                    realm.commitTransaction();
-
-                } catch (Exception ex) {
-                    realm.cancelTransaction();
-                }
+                authHelper.removeProfileData();
                 Intent i = new Intent(getContext(), LoginActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);

@@ -16,8 +16,11 @@ import io.devsummit.android.Activities.MainActivity;
 import io.devsummit.android.Models.UserTicketModel;
 import io.devsummit.android.Models.authmodel.JWTModel;
 import io.devsummit.android.Models.authmodel.RefreshTokenModel;
+import io.devsummit.android.Models.login.ProfileData;
 import io.devsummit.android.Remote.APIService;
 import io.devsummit.android.Remote.ApiUtils;
+import io.realm.Realm;
+import io.realm.RealmResults;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,6 +56,20 @@ public class UserAuthenticationHelper {
         editor.putString(REFRESH_TOKEN, "DEFAULT").apply();
     }
 
+    public void removeProfileData(){
+        final Realm realm = Realm.getDefaultInstance();
+
+        realm.beginTransaction();
+        try{
+            RealmResults<ProfileData> row = realm.where(ProfileData.class).findAll();
+            row.deleteAllFromRealm();
+            realm.commitTransaction();
+
+        } catch (Exception ex) {
+            realm.cancelTransaction();
+        }
+    }
+
     public void CheckTokenExpired(final Activity act){
         final String[] token = {sharedPrefs.getString(ACCESS_TOKEN, "DEFAULT")};
         if (!token[0].equals("DEFAULT")) {
@@ -62,6 +79,9 @@ public class UserAuthenticationHelper {
             // if not expired
             if (exp < jwt.getExp()) {
                 act.startActivity(new Intent(act, MainActivity.class));
+            } else {
+                removeAccessToken();
+                removeProfileData();
             }
         }
 
