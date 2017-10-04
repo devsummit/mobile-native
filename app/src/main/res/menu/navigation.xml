@@ -11,6 +11,11 @@
         android:icon="@drawable/ic_rss_feed_black_24dp"
         android:title="@string/title_home" />
 
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:title="@string/title_profile" />
+
     <!--<item-->
         <!--android:id="@+id/navigation_schedule"-->
         <!--android:icon="@drawable/ic_view_comfy_black_24dp"-->
