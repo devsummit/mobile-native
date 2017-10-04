@@ -29,6 +29,9 @@ public class UserTicketModel implements Serializable {
     @SerializedName("meta")
     @Expose
     private Meta meta;
+    @SerializedName("message")
+    @Expose
+    private String message;
 
     public List<Datum> getData() {
         return data;
@@ -60,6 +63,14 @@ public class UserTicketModel implements Serializable {
 
     public void setMeta(Meta meta) {
         this.meta = meta;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
 }
