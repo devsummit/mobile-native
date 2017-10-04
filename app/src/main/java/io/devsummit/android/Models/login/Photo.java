@@ -3,7 +3,10 @@ package io.devsummit.android.Models.login;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Photo {
+import io.realm.RealmModel;
+import io.realm.RealmObject;
+
+public class Photo extends RealmObject {
 
     @SerializedName("created_at")
     @Expose
