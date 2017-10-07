@@ -37,6 +37,7 @@ import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
 
+import io.devsummit.android.Helpers.RealmHelper;
 import io.devsummit.android.Models.login.Photo;
 import io.devsummit.android.Models.login.ProfileData;
 import io.fabric.sdk.android.Fabric;
@@ -160,7 +161,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         if (!mayRequestContacts()) {
             return;
         }
-
         getLoaderManager().initLoader(0, null, this);
     }
 
@@ -205,8 +205,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-
-
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
@@ -278,7 +276,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             String refreshToken = body.getData().getRefreshToken();
             authHelper.saveAccessToken(accessToken, refreshToken);
             if(body.getProfileData() != null) {
-                this.saveProfileData(body.getProfileData());
+                RealmHelper rh = new RealmHelper();
+                rh.receiveData(body.getProfileData());
             }
             toastMessage[0] = "Welcome! " + body.getProfileData().getFirstName();
             startActivity(new Intent(this, MainActivity.class));
@@ -318,50 +317,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         showProgress(false);
     }
 
-    private void saveProfileData(ProfileData pd){
-
-
-        // Get a Realm instance for this thread
-        Realm realm = Realm.getDefaultInstance();
-
-        try {
-            // Persist your data in a transaction
-            realm.beginTransaction();
-            ProfileData checkProfile =  realm.where(ProfileData.class).findFirst();
-            ProfileData newProfileData = checkProfile != null ? checkProfile : realm.createObject(ProfileData.class, pd.getId());
-
-            if (checkProfile == null) {
-                newProfileData.setCreatedAt(pd.getCreatedAt());
-                newProfileData.setEmail(pd.getEmail());
-                newProfileData.setFcmtoken(pd.getFcmtoken());
-                newProfileData.setUsername(pd.getUsername());
-                newProfileData.setFirstName(pd.getFirstName());
-                newProfileData.setLastName(pd.getLastName());
-                newProfileData.setReferer(pd.getReferer());
-                newProfileData.setRoleId(pd.getRoleId());
-                newProfileData.setSocialId(pd.getSocialId());
-                newProfileData.setUpdatedAt(pd.getUpdatedAt());
-                RealmList<Photo> list = pd.getPhotos();
-                if (!list.isManaged()) { // if the 'list' is managed, all items in it is also managed
-                    RealmList<Photo> managedImageList = new RealmList<>();
-                    for (Photo item : list) {
-                        if (item.isManaged()) {
-                            managedImageList.add(item);
-                        } else {
-                            managedImageList.add(realm.copyToRealm(item));
-                        }
-                    }
-                    list = managedImageList;
-                }
-                newProfileData.setPhotos(list);
-                realm.commitTransaction();
-            }
-
-        } catch (Exception exc){
-            realm.cancelTransaction();
-        }
-
-    }
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
@@ -386,7 +341,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             mLoginButton.setVisibility(show ? View.INVISIBLE : View.VISIBLE);
             mLoginPhoneButton.setVisibility(show ? View.INVISIBLE : View.VISIBLE);
-
 
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
             mProgressView.animate().setDuration(shortAnimTime).alpha(

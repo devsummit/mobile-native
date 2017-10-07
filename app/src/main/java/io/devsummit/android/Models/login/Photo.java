@@ -5,12 +5,14 @@ import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmModel;
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 public class Photo extends RealmObject {
 
     @SerializedName("created_at")
     @Expose
     private String createdAt;
+    @PrimaryKey
     @SerializedName("id")
     @Expose
     private Integer id;

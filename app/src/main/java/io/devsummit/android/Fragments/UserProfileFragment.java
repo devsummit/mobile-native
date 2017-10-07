@@ -81,9 +81,14 @@ public class UserProfileFragment extends Fragment {
         role.put(7, "User");
         role.put(8, "Partner");
 
-        mNameText.setText(currentProfile.getFirstName() + " " + currentProfile.getLastName());
-        mRoleText.setText(role.get(currentProfile.getRoleId()));
-        Picasso.with(getContext()).load(currentProfile.getPhotos().get(0).getUrl()).into(profileImage);
+        if(currentProfile!=null  && currentProfile.getFirstName() != null) {
+            mNameText.setText(currentProfile.getFirstName() + " " + currentProfile.getLastName());
+            mRoleText.setText(role.get(currentProfile.getRoleId()));
+            Picasso.with(getContext())
+                    .load(currentProfile.getPhotos().get(0).getUrl())
+                    .placeholder(R.drawable.empty_profile_grey)
+                    .into(profileImage);
+        }
         mLogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

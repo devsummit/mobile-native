@@ -84,10 +84,6 @@ public class UserAuthenticationHelper {
                 removeProfileData();
             }
         }
-
-
-
-
     }
 
     public String getAccessToken() {
@@ -98,14 +94,12 @@ public class UserAuthenticationHelper {
 
         JWTModel jwt = decodeToken(token[0]);
         int exp = (int) Math.floor(new Date().getTime() / 1000);
-
         // if not expired
         if (exp < jwt.getExp()) {
             return token[0];
         }
 
         String refreshToken = sharedPrefs.getString(REFRESH_TOKEN, "DEFAULT");
-
         mAPIService.refreshToken(refreshToken).enqueue(new Callback<RefreshTokenModel>() {
             @Override
             public void onResponse(Call<RefreshTokenModel> call, Response<RefreshTokenModel> response) {
@@ -117,7 +111,6 @@ public class UserAuthenticationHelper {
             public void onFailure(Call<RefreshTokenModel> call, Throwable t) {
             }
         });
-
         return token[0];
     }
 
