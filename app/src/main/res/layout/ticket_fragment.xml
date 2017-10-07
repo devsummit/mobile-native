@@ -38,12 +38,11 @@
                                 android:text="MY ORDERS" />
                             <ImageButton
                                 android:id="@+id/button_my_order"
-                                android:background="@null"
+                                android:background="?attr/selectableItemBackgroundBorderless"
                                 android:layout_width="0dp"
-                                android:layout_margin="20dp"
                                 android:tint="@color/colorAccent"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
+                                android:layout_weight="3"
                                 android:src="@drawable/ic_keyboard_arrow_right_black_24dp" >
                             </ImageButton>
                         </LinearLayout>

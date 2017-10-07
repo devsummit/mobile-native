@@ -41,6 +41,7 @@
 
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
+    <string name="title_profile">Profile</string>
     <string name="title_schedule">Schedule</string>
     <string name="title_setting">Setting</string>
     <string name="title_tickets">Tickets</string>

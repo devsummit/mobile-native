@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 
 
 import io.devsummit.android.Helpers.ExitAppHelper;
+import io.devsummit.android.Fragments.UserProfileFragment;
 import io.devsummit.android.R;
 import io.devsummit.android.Controllers.UserTicketController;
 import io.devsummit.android.Fragments.FeedFragment;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private UserTicketController userTicketController;
     private ProgressBar mProgressView;
     private BottomNavigationView navigation;
+    private boolean isNavigationEnabled;
 
     @Override
     public void onBackPressed() {
@@ -40,23 +42,30 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            mContainer.removeAllViews();
-            Fragment frag = null;
-            String token = authHelper.getAccessToken();
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    frag = FeedFragment.newInstance();
-                    break;
-                case R.id.tickets:
-                    userTicketController.getUserTickets(token, MainActivity.this);
-                    break;
+            if(isNavigationEnabled) {
+                mContainer.removeAllViews();
+                Fragment frag = null;
+                String token = authHelper.getAccessToken();
+                switch (item.getItemId()) {
+                    case R.id.navigation_home:
+                        frag = FeedFragment.newInstance();
+                        break;
+                    case R.id.tickets:
+                        userTicketController.getUserTickets(token, MainActivity.this);
+                        break;
+                    case R.id.navigation_profile:
+                        frag = UserProfileFragment.newInstance();
+                        break;
+                }
+                if (frag != null) {
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.add(R.id.container, frag, frag.getTag());
+                    ft.commit();
+                }
+                return true;
+            }else {
+                return  false;
             }
-            if (frag != null) {
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.add(R.id.container, frag, frag.getTag());
-                ft.commit();
-            }
-            return true;
         }
 
     };
@@ -71,13 +80,14 @@ public class MainActivity extends AppCompatActivity {
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         userTicketController = new UserTicketController(MainActivity.this);
         mContainer = (FrameLayout) findViewById(R.id.container);
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         userTicketController.getUserTickets(authHelper.getAccessToken(), MainActivity.this);
+        isNavigationEnabled = true;
+    }
+
+    public void enableNavigation(final boolean status) {
+        isNavigationEnabled = status;
     }
 
     /**

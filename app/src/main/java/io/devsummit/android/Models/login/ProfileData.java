@@ -3,9 +3,11 @@ package io.devsummit.android.Models.login;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
-public class Included {
+public class ProfileData extends RealmObject{
 
     @SerializedName("created_at")
     @Expose
@@ -19,6 +21,7 @@ public class Included {
     @SerializedName("first_name")
     @Expose
     private String firstName;
+    @PrimaryKey
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -27,7 +30,7 @@ public class Included {
     private String lastName;
     @SerializedName("photos")
     @Expose
-    private List<Photo> photos = null;
+    private RealmList<Photo> photos = null;
     @SerializedName("referer")
     @Expose
     private String referer;
@@ -92,11 +95,11 @@ public class Included {
         this.lastName = lastName;
     }
 
-    public List<Photo> getPhotos() {
+    public RealmList<Photo> getPhotos() {
         return photos;
     }
 
-    public void setPhotos(List<Photo> photos) {
+    public void setPhotos(RealmList<Photo> photos) {
         this.photos = photos;
     }
 
