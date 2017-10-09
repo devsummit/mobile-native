@@ -4,6 +4,7 @@ import io.devsummit.android.Models.LoginModel;
 import io.devsummit.android.Models.NotificationModel;
 import io.devsummit.android.Models.OrderedTicketModel;
 import io.devsummit.android.Models.RegisterModel;
+import io.devsummit.android.Models.UserFeedModel;
 import io.devsummit.android.Models.UserTicketModel;
 import io.devsummit.android.Models.authmodel.RefreshTokenModel;
 import io.devsummit.android.Models.login.Credentials;
@@ -16,6 +17,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 /**
@@ -48,6 +50,9 @@ public interface APIService {
     @GET
     @Headers("Content-Type: application/json")
     Call<NotificationModel> fetchNotification(@Header("Authorization") String token, @Url String url);
+
+    @GET("api/v1/feeds")
+    Call<UserFeedModel> fetchUserFeed(@Header("Authorization") String token, @Query("page") int page);
 
     @POST("auth/refreshtoken")
     @Headers("Content-Type:application/json")
