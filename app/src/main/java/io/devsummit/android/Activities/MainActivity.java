@@ -15,18 +15,19 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
-
-import io.devsummit.android.Helpers.ExitAppHelper;
-import io.devsummit.android.R;
+import io.devsummit.android.Controllers.UserFeedController;
 import io.devsummit.android.Controllers.UserTicketController;
-import io.devsummit.android.Fragments.FeedFragment;
+import io.devsummit.android.Helpers.ExitAppHelper;
 import io.devsummit.android.Helpers.UserAuthenticationHelper;
+import io.devsummit.android.R;
+import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity {
     private UserAuthenticationHelper authHelper;
     private UserTicketController userTicketController;
     private ProgressBar mProgressView;
     private BottomNavigationView navigation;
+    private UserFeedController userFeedController;
 
     @Override
     public void onBackPressed() {
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             String token = authHelper.getAccessToken();
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    frag = FeedFragment.newInstance();
+                    userFeedController.getUserFeed(token, MainActivity.this, 1);
                     break;
                 case R.id.tickets:
                     userTicketController.getUserTickets(token, MainActivity.this);
@@ -71,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         userTicketController = new UserTicketController(MainActivity.this);
         mContainer = (FrameLayout) findViewById(R.id.container);
+        userFeedController = new UserFeedController(MainActivity.this);
+        Realm.init(getApplicationContext());
     }
 
     @Override
@@ -78,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         userTicketController.getUserTickets(authHelper.getAccessToken(), MainActivity.this);
+        //userFeedController.getUserFeed(authHelper.getAccessToken(), MainActivity.this);
     }
 
     /**
