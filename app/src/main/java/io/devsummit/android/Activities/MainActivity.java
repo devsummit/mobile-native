@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         userTicketController.getUserTickets(authHelper.getAccessToken(), MainActivity.this);
-        //userFeedController.getUserFeed(authHelper.getAccessToken(), MainActivity.this);
     }
 
     /**
