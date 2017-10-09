@@ -67,7 +67,7 @@ public class FeedFragment extends Fragment {
             scrollListener = new EndlessRecyclerViewScrollListener(mLayoutManager) {
                 @Override
                 public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                    loadNextDataFromApi(page);
+                    loadNextDataFromApi(page, totalItemsCount);
                 }
             };
 
@@ -77,9 +77,11 @@ public class FeedFragment extends Fragment {
         return layout;
     }
 
-    public void loadNextDataFromApi(int offset) {
+    public void loadNextDataFromApi(int offset, int totalItems) {
         // Send an API request to retrieve appropriate paginated data
         String token = authHelper.getAccessToken();
+
+        offset = totalItems / 10;
 
         userFeedController.getUserFeed(token, getContext(), offset + 1);
     }
