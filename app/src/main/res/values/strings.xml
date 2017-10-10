@@ -40,7 +40,8 @@
     <string name="list_order">Order List</string>
 
     <string name="title_activity_main">MainActivity</string>
-    <string name="title_home">Home</string>
+    <string name="title_feed">Feed</string>
+    <string name="title_news_feed">News Feed</string>
     <string name="title_schedule">Schedule</string>
     <string name="title_setting">Setting</string>
     <string name="title_tickets">Tickets</string>

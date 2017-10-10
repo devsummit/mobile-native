@@ -7,13 +7,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.text.NumberFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import io.devsummit.android.Helpers.OrderStatusHelper;
+import io.devsummit.android.Helpers.TextHelper;
 import io.devsummit.android.Models.orderedtickets.Datum;
 import io.devsummit.android.R;
 
@@ -28,28 +25,6 @@ public class OrderedTicketListViewAdapter extends RecyclerView.Adapter<OrderedTi
     // Provide a suitable constructor (depends on the kind of dataset)
     public OrderedTicketListViewAdapter(List<Datum> myDataset) {
         mDataset = myDataset;
-    }
-
-    public String toRupiahFormat(Number nominal) {
-        NumberFormat format = NumberFormat.getInstance();
-
-        return "Rp " + format.format(nominal);
-    }
-
-    public String dateFormat(String inputDate) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        Date formattedDate = null;
-
-        try {
-            formattedDate = format.parse(inputDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        format = new SimpleDateFormat("MMM dd, yyyy (hh:mm)");
-        String outputDate = format.format(formattedDate);
-
-        return outputDate;
     }
 
     @Override
@@ -75,8 +50,8 @@ public class OrderedTicketListViewAdapter extends RecyclerView.Adapter<OrderedTi
 
         // TODO: all your bind operations
         holder.orderId.setText(mDataset.get(position).getId().toString());
-        holder.orderDate.setText(dateFormat(mDataset.get(position).getCreatedAt().toString()));
-        holder.orderAmount.setText(toRupiahFormat(mDataset.get(position).getAmount()));
+        holder.orderDate.setText(TextHelper.dateFormat(mDataset.get(position).getCreatedAt().toString()));
+        holder.orderAmount.setText(TextHelper.toRupiahFormat(mDataset.get(position).getAmount()));
         holder.orderStatus.setText(orderStatus);
     }
 
