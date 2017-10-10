@@ -1,12 +1,6 @@
 package io.devsummit.android.Controllers;
 
-import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-
-import io.devsummit.android.R;
 import io.devsummit.android.Activities.MainActivity;
-import io.devsummit.android.Fragments.TicketFragment;
 import io.devsummit.android.Models.UserTicketModel;
 import io.devsummit.android.Remote.APIService;
 import io.devsummit.android.Remote.ApiUtils;
@@ -30,17 +24,13 @@ public class UserTicketController {
         mAPIService = ApiUtils.getAPIService();
     }
 
-    public void getUserTickets(String token, final Context context) {
+    public UserTicketModel getUserTickets(String token) {
         mMainActivity.showProgress(true);
         mAPIService.fetchUserTicket(token).enqueue(new Callback<UserTicketModel>() {
             @Override
             public void onResponse(Call<UserTicketModel> call, Response<UserTicketModel> response) {
                 UserTickets = response.body();
-                AppCompatActivity activity = (AppCompatActivity) context;
-                Fragment frag = TicketFragment.newInstance(response.body());
-                android.support.v4.app.FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
-                ft.add(R.id.container, frag, frag.getTag());
-                ft.commit();
+                mMainActivity.ticketFragment.attachItemToAdapter(UserTickets.getData());
                 mMainActivity.showProgress(false);
             }
 
@@ -50,6 +40,8 @@ public class UserTicketController {
                 mMainActivity.showProgress(false);
             }
         });
+
+        return UserTickets;
     }
 
 }
