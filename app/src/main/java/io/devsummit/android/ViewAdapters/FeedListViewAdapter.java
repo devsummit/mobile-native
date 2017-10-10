@@ -26,7 +26,7 @@ public class FeedListViewAdapter extends RecyclerView.Adapter<FeedListViewAdapte
     private Context context;
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public FeedListViewAdapter(Context context, List<FeedData> myDataset) {
+    public FeedListViewAdapter(List<FeedData> myDataset, Context context) {
         mDataset = myDataset;
         this.context = context;
     }
