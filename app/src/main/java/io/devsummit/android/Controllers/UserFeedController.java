@@ -1,15 +1,11 @@
 package io.devsummit.android.Controllers;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 
 import io.devsummit.android.Activities.MainActivity;
-import io.devsummit.android.Fragments.FeedFragment;
 import io.devsummit.android.Helpers.InetConnectionHelper;
 import io.devsummit.android.Helpers.RealmHelper;
 import io.devsummit.android.Models.UserFeedModel;
-import io.devsummit.android.R;
 import io.devsummit.android.Remote.APIService;
 import io.devsummit.android.Remote.ApiUtils;
 import retrofit2.Call;
@@ -49,32 +45,18 @@ public class UserFeedController {
                             rh.receiveData(userFeedResponse.getData().get(i));
                         }
 
-                        callFragment(context, page);
+                        if (page == 1) {
+                            mMainActivity.feedFragment.attachAdapter();
+                        }
                     }
                 }
 
                 @Override
                 public void onFailure(Call<UserFeedModel> call, Throwable t) {
-                    callFragment(context, page);
                 }
             });
-        } else {
-            callFragment(context, page);
         }
-    }
 
-    private void callFragment(Context context, int page) {
-        if (page < 2) {
-            AppCompatActivity activity = (AppCompatActivity) context;
-            Fragment frag = FeedFragment.newInstance();
-            android.support.v4.app.FragmentTransaction ft
-                    = activity.getSupportFragmentManager().beginTransaction();
-            ft.add(R.id.container, frag, frag.getTag());
-            ft.commit();
-
-            if (mMainActivity != null) {
-                mMainActivity.showProgress(false);
-            }
-        }
+        mMainActivity.showProgress(false);
     }
 }
