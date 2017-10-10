@@ -10,7 +10,7 @@ public class Links {
     private String curr;
     @SerializedName("next")
     @Expose
-    private Object next;
+    private String next;
     @SerializedName("prev")
     @Expose
     private String prev;
@@ -26,11 +26,11 @@ public class Links {
         this.curr = curr;
     }
 
-    public Object getNext() {
+    public String getNext() {
         return next;
     }
 
-    public void setNext(Object next) {
+    public void setNext(String next) {
         this.next = next;
     }
 
